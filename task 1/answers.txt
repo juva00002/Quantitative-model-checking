@@ -1,0 +1,26 @@
+P1.1 
+b) My state space is defined by the variables "square", "wait", and "dice".
+
+"square" specifies which position in the game are we standing, "wait" models the behavior of waiting x rounds before doing an action again, the use of this variable is inconsistent, and "dice" represents the value of the last dice throw.
+
+Regarding "wait", we have 2 use cases. Squares like 18 where you are sent to wait to a specific square, and squares like 52 where once you land on it you have to wait 2 turns. In the first case the "wait" value is assigned in the square where you start, while in the second one it is assigned once you land on that square, such that the 2nd case is off by 1.
+
+A variable related to rounds is not used because it was not relevant for the single player model.
+
+P1.2 
+a) For a specific label we can do transient analysis by creating an experiment in the properties window. To do that we add a new constant of type int with no value, then we create a new property with the following code: P=? [ F[C1,C1] label ], where C1 is the unassigned constant and label is the name of the label we want to analyze. Once that is done, we can create the experiment and observe the probability of being in a state satisfying lab at step n of the game.
+
+b) We use the following formula: P=? [ F<=42 square=63 ], and results in a probability of 0.5278913003363962
+
+c) We use the following 2 formulas: P=? [ F<=6 square=63 ] and P=? [ F<=5 square=63 ], since the second formula results in 0, then the probability of finishing the game in the minimal steps of 6 is : 3.902457245959E-5
+
+d) In the original game there are deadlocks. These can happen by landing in a square that moves you forward the rolled dice into a square that moves you backwards the rolled dice, such that the game will eternally alternate between those 2 states. One example happens when you stand in the square 13, roll a 5 such that we land in 18, after that we will move forward to 23, wait one turn and then move back to 18.
+
+To verify this we can use the steady state operator S, with the formula S=? [ square=18 ] we can observe that the probability is 0.008694696190391704 > 0, which indicating that there are scenarios in which the game will not terminate.
+
+We could also calculate the probability of eventually reaching the goal state with the following formula: P=? [F square = 63] and it results in 0.8286343723586321 which is less than 1, hence there is a probability that the game will not terminate.
+
+P1.3
+An easy solution to avoid these deadlocks would be to force a roll of a dice, in my solution we roll a dice once we have to go backwards. For the case of square 59 rolling an 8 we roll again too.
+
+Regarding the previous PCTL formulas, all of the probabilities increased with the exception of P=? [ F<=6 square=63 ] which remained unchanged. In the case of P=? [ F square=63 ] now the probability is 1 and therefore the game will always terminate. 

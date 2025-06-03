@@ -1,0 +1,17 @@
+const int C0 = 0;
+const int C1;
+
+S=? [ square=18 ]
+
+P=? [ F<=42 square=63 ]
+
+P=? [ F<=6 square=63 ]
+
+P=? [ F square=63 ]
+
+P=? [ F[C1,C1] "fiftytwo" ]
+
+P=? [ F<=5 square=63 ]
+
+P=? [F square = 63]
+
