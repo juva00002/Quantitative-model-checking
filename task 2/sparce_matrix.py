@@ -43,11 +43,8 @@ class SparseMatrix:
         return SparseMatrix(matrix = new_matrix)
     
     def multiply_n_times(self, sparseMatrix, n):
-        count = 0
         for i in range(n):
-            count += 1
             matrix = self.multiply_with(sparseMatrix)
-            print(count)
             
         return SparseMatrix(matrix = matrix)
     

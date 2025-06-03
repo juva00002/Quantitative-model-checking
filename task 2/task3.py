@@ -1,14 +1,13 @@
 import sparce_matrix 
 
 
-def next_operator(set_B,sparse_matrix,i): 
-    p_sum = 0.0 
-    print(sparse_matrix.matrix[i])  
-    for j in set_B: 
-
-        p_sum += sparse_matrix.get(i, j) 
+def next_operator(set_B, matrix: sparce_matrix.SparseMatrix): 
+    p = [0 for _ in range(len(matrix.matrix))]
+    for i in range(len(matrix.matrix)):
+        for j in set_B: 
+            p[i] += matrix.get(i,j)
     
-    return p_sum  
+    return p  
 
 def bounded_until(set_A, set_B, sparse_matrix, i, n):
     # Base cases
@@ -66,7 +65,7 @@ def until_operator(set_A, set_B, sparse_matrix, p=1e-6):
 
 def main():
     # Load the transition matrix from file
-    transition_matrix = sparce_matrix.SparseMatrix("b.txt") 
+    transition_matrix = sparce_matrix.SparseMatrix("task 2/b.txt") 
     print(transition_matrix) 
     i = 0
     #for elem in transition_matrix.matrix: 
@@ -74,7 +73,7 @@ def main():
         #i += 1  
 
     #print(next_operator([1, 2, 3], transition_matrix, 0)) 
-    print(next_operator([10, 17, 21,22], transition_matrix, 0))
+    print(next_operator([10, 17, 21,22], transition_matrix))
 
 if __name__ == "__main__":
     main()
