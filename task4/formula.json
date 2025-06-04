@@ -1,0 +1,10 @@
+{
+  "op": "P",
+  "lower": 0.5,
+  "upper": 1.0,
+  "child": {
+    "op": "U",
+    "left": {"op": "ap", "var": "square", "val": 0},
+    "right": {"op": "ap", "var": "dice", "val": 6}
+  }
+}
